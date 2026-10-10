@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as MedicinesRouteImport } from './routes/medicines'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RecordsRouteImport } from './routes/records'
+import { Route as TimelineRouteImport } from './routes/timeline'
+import { Route as ApiPublicAnalyzeRouteImport } from './routes/api.public.analyze'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicinesRoute = MedicinesRouteImport.update({
+  id: '/medicines',
+  path: '/medicines',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecordsRoute = RecordsRouteImport.update({
+  id: '/records',
+  path: '/records',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TimelineRoute = TimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicAnalyzeRoute = ApiPublicAnalyzeRouteImport.update({
+  id: '/api/public/analyze',
+  path: '/api/public/analyze',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/medicines': typeof MedicinesRoute
+  '/profile': typeof ProfileRoute
+  '/records': typeof RecordsRoute
+  '/timeline': typeof TimelineRoute
+  '/api/public/analyze': typeof ApiPublicAnalyzeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/medicines': typeof MedicinesRoute
+  '/profile': typeof ProfileRoute
+  '/records': typeof RecordsRoute
+  '/timeline': typeof TimelineRoute
+  '/api/public/analyze': typeof ApiPublicAnalyzeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/medicines': typeof MedicinesRoute
+  '/profile': typeof ProfileRoute
+  '/records': typeof RecordsRoute
+  '/timeline': typeof TimelineRoute
+  '/api/public/analyze': typeof ApiPublicAnalyzeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/medicines'
+    | '/profile'
+    | '/records'
+    | '/timeline'
+    | '/api/public/analyze'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/medicines'
+    | '/profile'
+    | '/records'
+    | '/timeline'
+    | '/api/public/analyze'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/medicines'
+    | '/profile'
+    | '/records'
+    | '/timeline'
+    | '/api/public/analyze'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  MedicinesRoute: typeof MedicinesRoute
+  ProfileRoute: typeof ProfileRoute
+  RecordsRoute: typeof RecordsRoute
+  TimelineRoute: typeof TimelineRoute
+  ApiPublicAnalyzeRoute: typeof ApiPublicAnalyzeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medicines': {
+      id: '/medicines'
+      path: '/medicines'
+      fullPath: '/medicines'
+      preLoaderRoute: typeof MedicinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/records': {
+      id: '/records'
+      path: '/records'
+      fullPath: '/records'
+      preLoaderRoute: typeof RecordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/timeline': {
+      id: '/timeline'
+      path: '/timeline'
+      fullPath: '/timeline'
+      preLoaderRoute: typeof TimelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/analyze': {
+      id: '/api/public/analyze'
+      path: '/api/public/analyze'
+      fullPath: '/api/public/analyze'
+      preLoaderRoute: typeof ApiPublicAnalyzeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  MedicinesRoute: MedicinesRoute,
+  ProfileRoute: ProfileRoute,
+  RecordsRoute: RecordsRoute,
+  TimelineRoute: TimelineRoute,
+  ApiPublicAnalyzeRoute: ApiPublicAnalyzeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
