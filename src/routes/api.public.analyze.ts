@@ -28,4 +28,4 @@ export const Route=createFileRoute('/api/public/analyze')({server:{handlers:{POS
  if(!completed||!output)throw new Error('The analysis did not complete. No summary was saved.');const analysis=analysisSchema.parse(JSON.parse(output));const record={id:crypto.randomUUID(),title:analysis.title,record_type:analysis.type,record_date:analysis.date,analysis,mime_type:mime};const {data:saved,error:saveError}=await db.from('health_records').insert({...record,user_id:auth.user.id,file_path:path,fhir_resource:fhirBundle(record)}).select().single();if(saveError)throw new Error(saveError.message);send({type:'complete',record:saved});
  }catch(e){send({type:'error',message:e instanceof Error?e.message:'The record could not be analyzed.'});}finally{controller.close();}},cancel(){return reader.cancel();}});
  return new Response(stream,{headers:getLovableAiGatewayResponseHeaders(upstream.headers,{'Content-Type':'application/x-ndjson','Cache-Control':'no-cache, no-transform'})});
-}}});
+}}}});
